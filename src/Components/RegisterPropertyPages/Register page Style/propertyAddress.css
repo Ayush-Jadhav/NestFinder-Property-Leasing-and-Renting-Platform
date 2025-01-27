@@ -1,0 +1,39 @@
+.form-section{
+    padding-bottom: 20px;
+}
+
+.form-group{
+    margin-top: 25px;
+    padding: 0px;
+    display: block;
+    padding-top: 0;
+    /* line-height: 0px; */
+}
+  
+.form-group label{
+    margin-top: 0px;
+}
+  
+  .form-section input{
+    padding: 10px;
+    /* border:none; */
+    width: 50%;
+    border-bottom: 2px solid #696868; 
+    /* background-color: transparent;  */
+    background-color: rgba(12, 12, 13, 0.2);
+    outline: none; 
+    color: #e5ebec; 
+    font-size: 16px;
+    font-weight: 500
+  }
+  
+  .error-message {
+    color: rgb(146, 93, 0);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }
+
+  .form-actions{
+    justify-content: flex-start;
+  }

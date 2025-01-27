@@ -1,0 +1,97 @@
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    background-color: #2a2a2a;
+    border: 1px solid #4a4a4a;
+  }
+  
+  .profile-image-container {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .profile-image {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #f1f1f1;
+  }
+  
+  .profile-email {
+    font-size: 0.875rem;
+    color: #a3a3a3;
+  }
+  
+  .edit-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .about-container,
+  .personal-details-container {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    background-color: #2a2a2a;
+    border: 1px solid #4a4a4a;
+  }
+  
+  .details-title {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .details-title p {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #f1f1f1;
+  }
+  
+  .details-description {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  .details-description.default {
+    color: #a3a3a3;
+  }
+  
+  .details-row {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+  }
+  
+  .details-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .details-item {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #f1f1f1;
+  }
+  
+  .details-item-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #7a7a7a;
+  }
+  

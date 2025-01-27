@@ -1,0 +1,94 @@
+.sidebar-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 8px;
+    border-radius: 8px;
+    /* background-color: rgba(28, 28, 28, 0.9); */
+    /* box-shadow: 0px 4px 10px rgba(27, 27, 27, 0.9); */
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.step-icon {
+    font-size: 24px;
+    margin-right: 19px;
+    /* padding-right: 5px; */
+    position: relative;
+}
+
+.CompletionLineUp{
+    display: inline-block;
+    background-color: #e43c3c;
+    width: 3px;
+    height: 30.5px;
+    position: absolute;
+    bottom: 88%;
+    left: 46.5%;
+}
+
+.UncompletionLineUp{
+    display: inline-block;
+    background-color: #977a7a;
+    width: 3px;
+    height: 30.5px;
+    position: absolute;
+    bottom: 88%;
+    left: 46.5%;
+}
+
+
+.CompletionLineDown{
+    display: inline-block;
+    background-color: #e43c3c;
+    width: 3px;
+    height: 30.5px;
+    position: absolute;
+    top: 72%;
+    left: 46.5%;
+}
+
+.UncompletionLineDown{
+    display: inline-block;
+    background-color: #a28282;
+    width: 3px;
+    height: 30.5px;
+    position: absolute;
+    top: 72%;
+    left: 46.5%;
+}
+
+
+.icon {
+    color: #aca9a9;
+}
+
+/* .icon.current {
+    border: 1px solid #aca9a9;
+    border-radius: 100%;
+    padding: 0;
+} */
+
+.step-details h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.step-details p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.edit-link {
+    margin-left: 10px;
+    font-size: 14px;
+    color: rgb(149, 149, 185);
+    cursor: pointer;
+    /* text-decoration: underline; */
+}
+
+.edit-link:hover {
+    color: darkblue;
+}

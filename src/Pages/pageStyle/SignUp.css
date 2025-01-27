@@ -1,0 +1,151 @@
+.form{
+    max-width: 100%;
+    height: 92vh;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.form img{
+    width: 100%;
+    height: 92vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.chooseForm{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content:space-around;
+  align-items: center;
+  background-color: rgba(57, 56, 56, .6);
+  border-radius: 22px;
+  padding: 0 5px;
+  height: 54px;
+  margin: auto;
+}
+
+.formOption{
+  display: inline-block;
+  padding: 8px 42px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.activeForm{
+  display: inline-block;
+  background-color: rgb(19, 20, 20);
+  padding: 8px 42px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.signUpContainer {
+    position: absolute;
+    left: 7%;
+    top: 1.5%;
+    width: 50vh;
+    margin: 20px;
+    padding: 10px 24px;
+    background:linear-gradient(360deg, rgb(14, 14, 14,0.9), rgba(17, 16, 16, 0.6));
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 9px;
+  }
+  
+  .signUpForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    height:70vh;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .formGroup label {
+    display: block;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 9px;
+  }
+
+  .passInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+  }
+  
+  .passInput input {
+    flex: 1;
+    padding-right: 40px;
+  }
+  
+  .visibleIcon {
+    display: inline-block;
+    position: absolute;
+    right: 10px; /* Adjust for alignment */
+    cursor: pointer;
+    padding: 5px;
+    font-size: 20px;
+  }
+  
+  .visibleIcon:hover {
+    transform: scale(1.1);
+  }
+  
+
+  .formGroup input {
+    width: 94.5%;
+    padding: 10px;
+    border: none; 
+    border-bottom: 2px solid #272626; 
+    background-color: transparent; 
+    outline: none; 
+    color: #e5ebec; 
+    font-size: 16px;
+    font-weight: 500
+  }
+
+  .forgotPass {
+    display: block;
+    margin-top: 7px;
+    font-size: 12px;
+    margin-right: 5px;
+    color: #facc15;
+    float: right;
+    cursor: pointer;
+    text-decoration: none;
+    /* margin-bottom: 10px; */
+  }
+  
+  .signUpButton {
+    background-color: #facc15;
+    color: #121212;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .signUpButton:hover {
+    background-color: #d4a717;
+  }
+  
