@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# NestFinder-Property-Leasing-and-Renting-Platform
+This Project is a full-stack web application designed to simplify the property leasing and renting process. It provides a seamless experience for property owners to list their properties and for users to explore and rent properties that suit their preferences.
+>>>>>>> 957a7740b1eb959a9168fdb2a2a22adce80ad0fc
