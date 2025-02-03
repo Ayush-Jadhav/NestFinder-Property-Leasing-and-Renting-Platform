@@ -57,7 +57,7 @@ exports.createProperty = async (req,res)=>{
             return res.status(400).json({ message: 'No files uploaded' });
         }
 
-        const files = req.files; // All files from the request
+        const files = req.files; 
         const uploadedUrls = [];
 
         // Iterate over the files object
@@ -70,14 +70,14 @@ exports.createProperty = async (req,res)=>{
                 {
                     const uploadedUrl = await uploadFile({
                         file,
-                        folderName:'propertyVideo' // Adjust folder name if needed
+                        folderName:'propertyVideo' 
                     });
                     property.videos.push({url:uploadedUrl});
                 }
                 else{
                     const uploadedUrl = await uploadFile({
                         file,
-                        folderName:'propertyPhotos' // Adjust folder name if needed
+                        folderName:'propertyPhotos' 
                     });
                     property.images.push({url:uploadedUrl}); 
                 }
@@ -101,7 +101,7 @@ exports.createProperty = async (req,res)=>{
         })
     }
     catch(err){
-        console.error(err); // Log the error for debugging
+        console.error(err); 
         return res.status(500).json({ 
             success: false, 
             message: "Something went wrong. Please try again later." 

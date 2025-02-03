@@ -15,6 +15,7 @@ exports.uploadFile = async ({file,folderName,height,quality}) =>{
     options.resource_type = "auto";
     
     const result = await cloudinary.uploader.upload(file.tempFilePath, options);
+    console.log(result);
     return result.secure_url;
 }
 

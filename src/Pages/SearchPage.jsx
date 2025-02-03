@@ -23,6 +23,7 @@ const SearchResults = () => {
   const queryParams = new URLSearchParams(location.search);
   const searchString = queryParams.get('searchString');
   const [searchText, setSearchText] = useState(searchString);
+  const [finalSearch,setFinalSearch] = useState(searchString);
 
   // Fetch properties based on the search string
   const fetchProperties = async (searchString) => {
@@ -37,7 +38,7 @@ const SearchResults = () => {
 
   useEffect(()=>{
     fetchProperties(searchText);
-  },[searchText])
+  },[finalSearch])
 
   // Apply filters to the properties
   useEffect(() => {
@@ -73,6 +74,7 @@ const SearchResults = () => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("searchString", searchText);
     navigate(`?${searchParams.toString()}`);
+    setFinalSearch(searchText);
     fetchProperties(searchText); 
   };
 
