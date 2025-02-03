@@ -1,113 +1,112 @@
 const User = require("../models/user");
 const propertyInfo = require("../models/PropertyInfo");
-const {uploadFile} = require("../utils/uploadFile");
-const mongoose  = require("mongoose")
-// const propertyProfile = require("../models/propertyProfile");
+const { uploadFile } = require("../utils/uploadFile");
+const mongoose = require("mongoose");
 
-exports.createProperty = async (req,res)=>{
-    try{
-        // get user id from req after verify token
+exports.createProperty = async (req, res) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    
+    try {
+        // Get user ID from token
         const userId = req.user.id;
+        
+        // Fetch property details from request
+        const { kindOfProperty, lookingFor, city, state, locality, street, price, plotArea, furnishing, willingToGive } = req.body;
+        
+        console.log("req.files", req.files);
 
-        // fetch all information
-        const {kindOfProperty,lookingFor,city,state,locality,street,price,plotArea,furnishing,willingToGive} = req.body;
-
-        console.log("req.files",req.files);
-
-        // validate information
-        if(!kindOfProperty || !lookingFor || !price || !city || !state || !locality || !street || !plotArea || !furnishing || !willingToGive){
+        // Validate input fields
+        if (!kindOfProperty || !lookingFor || !price || !city || !state || !locality || !street || !plotArea || !furnishing || !willingToGive) {
             return res.status(400).json({
                 success: false,
-                message: "please fill all information"
-            })
+                message: "Please fill all required fields."
+            });
         }
 
-        // find user 
-        const user = await User.findById(userId);
-
-        if(!user)
-        {
+        // Find the user
+        const user = await User.findById(userId).session(session);
+        if (!user) {
             return res.status(400).json({
                 success: false,
-                message: "user not found",
-            })
+                message: "User not found.",
+            });
         }
 
-
-        // create propertyInfo
-        const property = await propertyInfo.create({
-                                                    userId: user._id,
-                                                    active: "Active",
-                                                    kindOfProperty,
-                                                    lookingFor,
-                                                    location: {
-                                                        state: state,
-                                                        city: city,
-                                                        locality: locality,
-                                                        street: street,
-                                                    },                                                    
-                                                    price,
-                                                    plotArea: plotArea,
-                                                    furnishing: furnishing,
-                                                    willingToGive:willingToGive,
-                                                });
-
-
+        // Ensure files are present
         if (!req.files) {
-            return res.status(400).json({ message: 'No files uploaded' });
+            return res.status(400).json({ success: false, message: 'No files uploaded' });
         }
 
-        const files = req.files; 
-        const uploadedUrls = [];
+        const files = req.files;
+        const uploadedImages = [];
+        const uploadedVideos = [];
 
-        // Iterate over the files object
+        // Upload files before creating property
         for (const key in files) {
             if (Object.hasOwnProperty.call(files, key)) {
                 const file = files[key];
 
-                // Upload each file to Cloudinary
-                if(key==="video")
-                {
-                    const uploadedUrl = await uploadFile({
-                        file,
-                        folderName:'propertyVideo' 
+                try {
+                    if (key === "video") {
+                        const uploadedUrl = await uploadFile({ file, folderName: 'propertyVideo' });
+                        uploadedVideos.push({ url: uploadedUrl });
+                    } else {
+                        const uploadedUrl = await uploadFile({ file, folderName: 'propertyPhotos' });
+                        uploadedImages.push({ url: uploadedUrl });
+                    }
+                } catch (uploadError) {
+                    await session.abortTransaction();
+                    session.endSession();
+                    console.error(uploadError);
+                    return res.status(500).json({
+                        success: false,
+                        message: "File upload failed. Please try again.",
                     });
-                    property.videos.push({url:uploadedUrl});
                 }
-                else{
-                    const uploadedUrl = await uploadFile({
-                        file,
-                        folderName:'propertyPhotos' 
-                    });
-                    property.images.push({url:uploadedUrl}); 
-                }
+            }
+        }
 
-            }}
-
-
-        await property.save();
-
-        // push propertyInfo into owner profile
-        await User.findByIdAndUpdate({_id: user._id},
-            {
-                $push: {onRent:property._id},
+        // Create propertyInfo only after successful uploads
+        const property = await propertyInfo.create([{
+            userId: user._id,
+            active: "Active",
+            kindOfProperty,
+            lookingFor,
+            location: {
+                state,
+                city,
+                locality,
+                street,
             },
-            {new: true}
-        );
+            price,
+            plotArea,
+            furnishing,
+            willingToGive,
+            images: uploadedImages,
+            videos: uploadedVideos,
+        }], { session });
+
+        // Push property into user's profile
+        await User.findByIdAndUpdate(user._id, {
+            $push: { onRent: property[0]._id },
+        }, { new: true, session });
+
+        // Commit transaction
+        await session.commitTransaction();
+        session.endSession();
 
         res.status(200).json({
             success: true,
-            message: "property created successfully"
-        })
-    }
-    catch(err){
-        console.error(err); 
-        return res.status(500).json({ 
-            success: false, 
-            message: "Something went wrong. Please try again later." 
+            message: "Property created successfully."
+        });
+    } catch (err) {
+        await session.abortTransaction();
+        session.endSession();
+        console.error(err);
+        return res.status(500).json({
+            success: false,
+            message: "Something went wrong. Please try again later."
         });
     }
-}
-
-
-
+};
