@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:false}));
 
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://nest-finder-property-leasing-and-renting-platform-five.vercel.app/",
+    origin: process.env.FRONTEND_URL,
     credentials: true,              
  }));
 
