@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const OTP = require("../models/otp");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 const otpGenerator = require("otp-generator");
 
 exports.sendOTP =async (req,res)=>{
