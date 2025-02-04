@@ -31,7 +31,7 @@ exports.resetPasswordToken = async (req,res) =>{
         );
 
         // create new URL 
-        const URL = `http://localhost:3000/update-password/${token}`;
+        const URL = `https://nest-finder-property-leasing-and-renting-platform-five.vercel.app/update-password/${token}`;
         console.log("URL",URL);
 
         // send email
